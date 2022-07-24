@@ -1,0 +1,115 @@
+
+ 
+body {
+    background: linear-gradient(135deg, #86e3ce, #d0e6a5);
+      font-size: 12px;
+  }
+  #card {
+      width: 520px;
+      ;
+    }
+   
+  #card h2 {
+      text-shadow: 0 1px 0 #27ae60;
+      font-size: 2.62em;
+      color: gray;
+      display: block;
+      width: 100%;
+      padding-bottom: .4em;
+      margin-bottom: .6em;
+      border-bottom: 2px solid gray;
+      /*box-shadow*/
+      -webkit-box-shadow: 0 1px 0 #27ae60;
+      -moz-box-shadow: 0 1px 0 #27ae60;
+      box-shadow: 0 1px 0 #27ae60;
+  }
+  #card a { color: #27ae60 }
+  #card label {
+      font-size: 10px;
+      display: block;
+      float: right;
+      clear: left;
+      line-height: 2.4;
+      margin: -30px 0 0;
+      padding: 0;
+      width: 190px;
+      height: 20px;
+  }
+  input[type="text"],input[type="email"],.text_area{
+      clear: both;
+      float: left;
+      display: block;
+      border: 1px solid #ccc;
+      background: #ebebeb;
+      margin: 6px 0;
+      padding: 4px 10px;
+      width: 100%;
+      outline: 0;
+      color: #34495e;
+      font-size: 18px;
+  }
+  input[type="email"]{
+    height: 40px;
+  }
+  input[type="search"]{
+    clear: both;
+    float: left;
+    display: block;
+    border: 1px solid #ccc;
+    background: #ebebeb;
+    margin: 6px 0;
+    padding: 4px 10px;
+    width: 65%;
+    height: 34px;
+    outline: 0;
+    color: #34495e;
+    font-size: 18px;
+  }
+  
+  
+  
+  
+  
+  input[type=submit] {
+      float: left;
+    border: 1px solid #ccc;
+    background: #ebebeb;
+    padding: 4px 10px;
+      background: black;
+      color: #ecf0f1;
+      border: 0;
+      width: 50%;
+      border-bottom: 2px solid #2ecc71;
+      margin: 6px 0;
+      padding: 4px 10px;
+      height: 34px;
+      outline: 0;
+      font-size: 18px;
+  }
+  #search_btn{
+    float: left;
+    border: 1px solid #ccc;
+    background: #ebebeb;
+    padding: 4px 10px;
+      background: black;
+      color: #ecf0f1;
+      border: 0;
+      width: 15%;
+      border-bottom: 2px solid #2ecc71;
+      margin: 6px 0;
+      padding: 4px 10px;
+      height: 34px;
+      outline: 0;
+      font-size: 18px;
+  }
+  
+  
+  input[type=text]:not([value*=" "]):active,
+  input[type=text]:not([value*=" "]):focus {
+      -webkit-box-shadow: inset 8px 0px 0  green;
+      -moz-box-shadow: inset 8px 0px 0  green;
+      box-shadow: inset 8px 0px 0  green;
+      border: 2px solid green;
+      /* padding-left: ; */
+  }
+  

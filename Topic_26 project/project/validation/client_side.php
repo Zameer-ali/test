@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>::process::</title>
+</head>
+<body>
+    
+        <form action="server_side.php" method="POST" onsubmit="return form_function()" >
+            <fieldset >
+                <legend>Registration Form</legend>
+                <table cellspacing=8  >
+                    <tr>
+                        <td colspan="3" align="center">
+                        <b>Note:</b>Required Feilds Are Marked With <span>*</span>
+                    </td></tr>
+                    <?php
+                        if (isset($_REQUEST['error_message'])) {?>
+                            <tr>
+                                <td colspan=3>
+                                    <ul>
+                                        <?= $_REQUEST['error_message'] ?>
+                                    </ul>
+                                </td>
+                            </tr>
+                      <?php  } ?>
+                    <tr>
+                        <td>Name: <span>*</span></td>
+                        <td><input type="text" name="first_name" id="first_name" class="input_control"></td>
+                        <td><span id="first_name_msg"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Last Name:</td>
+                        <td><input type="text" name="last_name" id="last_name" class="input_control"></td>
+                        <td><span id="last_name_msg"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Email:<span>*</span></td>
+                        <td><input type="text" name="email" id="email" class="input_control"></td>
+                        <td><span id="email_msg"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Password:<span>*</span></td>
+                        <td><input type="password" name="password" id="password" class="input_control"></td>
+                        <td><span id="password_msg"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Cnic:<span>*</span></td>
+                        <td><input type="text" name="cnic" id="cnic" class="input_control"></td>
+                        <td><span id="cnic_msg"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Phone No:<span>*</span></td>
+                        <td><input type="text" name="phone_no" id="phone_no" class="input_control"></td>
+                        <td><span id="phone_no_msg"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Address:<span>*</span></td>
+                        <td><textarea type="text" name="address" id="address" class="input_control"  rows="2" cols=36></textarea></td>
+                        <td><span id="address_msg"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Country:<span>*</span></td>
+                        <td><select name="country" id="country" class="input_control">
+                            <option value="">Select country</option>
+                            <option >Pikistan</option>
+                            <option >China</option>
+                            <option >Afghanistan</option>
+                            <option >Bangladesh</option>
+                        </select></td>
+                        <td><span id="country_msg"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Gender:<span>*</span></td>
+                        <td><input type="radio" name="gender" id="male" value="male">Male
+                        <input type="radio" name="gender" id="female" value="female" >Female</td>
+                        <td><span id="gender_msg"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Policies:<span>*</span></td>
+                        <td><input type="checkbox" name="policies[]" class="policies" value="assignment">Assignment<br/>
+                        <input type="checkbox" name="policies[]" class="policies" value="Test" > Test<br/>
+                        <input type="checkbox" name="policies[]" class="policies" value="Discipline" > Discipline<br/>
+                        <input type="checkbox" name="policies[]" class="policies" value="Attendance" > Attendance
+                    </td>
+                        <td><span id="policies_msg"></span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><input type="submit" value="submit" name="submit"></td>
+                    </tr>
+                    
+                </table>
+            </fieldset>
+        </form>
+    
+</body>
+<script>
+    function form_function(){
+        var is_validate=true;
+        //  get elements through ids
+        var first_name=document.getElementById('first_name').value;
+        var last_name=document.getElementById('last_name').value;
+        var email=document.getElementById('email').value;
+        var password=document.getElementById('password').value;
+        var phone_no=document.getElementById('phone_no').value;
+        var cnic=document.getElementById('cnic').value;
+        var country=document.getElementById('country').value;
+        var male=document.getElementById('male').checked;
+        var female=document.getElementById('female').checked;
+
+        // Field Validations
+        var fname_pattern=/^[a-z]{3,15}$/gi
+        var lname_pattern=/^[a-z]{3,15}$/gi
+        var email_pattern=/^[\w]{3,15}@[a-z]{5,15}[.](com|org|pk)$/gi
+        var phone_no_pattern=/^[+][\d]{5}-[\d]{7}$/gi
+        var cnic_pattern=/^[\d]{5}-[\d]{7}-[\d]{1}$/gi
+        var password_pattern_small=/[a-z]+/g
+        var password_pattern_capital=/[A-Z]+/g
+        var password_pattern_digit=/[\d]+/g
+        var password_pattern_specl_char=/[\W]+/g
+        
+        // check firstname validation 
+        if (first_name=='') {
+            is_validate=false;
+            document.getElementById('first_name_msg').innerHTML="Please Enter Name";
+        }else{
+            first_name_msg=document.getElementById('first_name_msg').innerHTML="";
+            if (!fname_pattern.test(first_name)) {
+                is_validate=false
+                document.getElementById('first_name_msg').innerHTML="Name format should be 3-15 range";
+            }
+        }
+        // check last name validation 
+        if (last_name=='') {
+        }else{
+            if (!lname_pattern.test(last_name)) {
+                is_validate=false
+                document.getElementById('last_name_msg').innerHTML="Last Name format should be 3-15 range";
+            }else{
+                document.getElementById('last_name_msg').innerHTML="";
+            }
+        }
+        // check email validation 
+        if (email=='') {
+            is_validate=false;
+            email_msg=document.getElementById('email_msg').innerHTML="Please Enter Email";
+        }else{
+            email_msg=document.getElementById('email_msg').innerHTML="";
+            if (!email_pattern.test(email)) {
+                is_validate=false
+                email_msg=document.getElementById('email_msg').innerHTML="Please enter email format should be abc123@gmail.com";
+            }
+        }
+        // check password validation 
+        if (password=='') {
+            is_validate=false;
+            document.getElementById('password_msg').innerHTML="Please Enter Password";
+        }else{
+            document.getElementById('password_msg').innerHTML="";
+            if (!(password.length>=8 && password_pattern_small.test(password) && password_pattern_capital.test(password) && password_pattern_digit.test(password) && password_pattern_specl_char.test(password))) {
+                is_validate=false
+                document.getElementById('password_msg').innerHTML="password should be atleast 8 characters and contain atleast 1 number 1 small alphabet 1 capital alphabet 1 special character";
+            }
+        }
+        // check phone number validation 
+
+        if (phone_no=='') {
+            is_validate=false;
+            document.getElementById('phone_no_msg').innerHTML="Please Enter Phone Number";
+        }else{
+            document.getElementById('phone_no_msg').innerHTML="";
+            if (!phone_no_pattern.test(phone_no)) {
+                is_validate=false
+                document.getElementById('phone_no_msg').innerHTML="phone no should be like +92303-3456543";
+            }
+        }
+        // check cnic validation 
+        if (cnic=='') {
+            is_validate=false;
+            document.getElementById('cnic_msg').innerHTML="Please Enter Cnic";
+        }else{
+            document.getElementById('cnic_msg').innerHTML="";
+            if (!cnic_pattern.test(cnic)) {
+                is_validate=false
+                document.getElementById('cnic_msg').innerHTML="Cnic should be like 45303-3456543-1";
+            }
+        }
+        // check country validation 
+
+        if (country=='') {
+            is_validate=false;
+            document.getElementById('country_msg').innerHTML="Please Enter country";
+        }else{
+            document.getElementById('country_msg').innerHTML="";
+
+        }
+        // check gender validation 
+
+        if (male=='' && female=='') {
+            is_validate=false;
+            document.getElementById('gender_msg').innerHTML="Please Select Gender";
+        }else{
+            document.getElementById('gender_msg').innerHTML="";
+        }
+        // check all fields are validate or not
+        if (is_validate) {
+            return true
+        }else{
+            return false
+        }
+
+    }
+</script>
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="utf8mb4" collation="utf8mb4_general_ci">shopping_system</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="item" view="standard">
+<left>89</left>
+<top>128</top>
+<width>259</width>
+<height>165</height>
+<sql_create_table>CREATE TABLE `item` (
+  `item_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  PRIMARY KEY (`item_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="order" view="standard">
+<left>429</left>
+<top>80</top>
+<width>202</width>
+<height>171</height>
+<sql_create_table>CREATE TABLE `order` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_date` date DEFAULT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `item_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`order_id`),
+  KEY `item_id` (`item_id`),
+  KEY `person_id` (`customer_id`),
+  CONSTRAINT `order_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `person` (`customer_id`),
+  CONSTRAINT `order_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `item` (`item_id`),
+  CONSTRAINT `order_ibfk_3` FOREIGN KEY (`customer_id`) REFERENCES `person` (`customer_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="person" view="standard">
+<left>727</left>
+<top>115</top>
+<width>279</width>
+<height>163</height>
+<sql_create_table>CREATE TABLE `person` (
+  `customer_id` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(20) NOT NULL,
+  `Gender` enum('Male','Female') DEFAULT NULL,
+  `Date_of_birth` date DEFAULT NULL,
+  `Address` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`customer_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="utf8mb4" collation="utf8mb4_general_ci">online_blogging_application</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="categories" view="standard">
+<left>560</left>
+<top>479</top>
+<width>293</width>
+<height>140</height>
+<sql_create_table>CREATE TABLE `categories` (
+  `category_id` int(11) NOT NULL AUTO_INCREMENT,
+  `blog_category` varchar(255) NOT NULL,
+  `cat_status` enum('Active','Inactive') DEFAULT 'Active',
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="comments" view="standard">
+<left>864</left>
+<top>304</top>
+<width>292</width>
+<height>195</height>
+<sql_create_table>CREATE TABLE `comments` (
+  `comments_id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `comment` text NOT NULL,
+  `comment_date` datetime NOT NULL,
+  `comment_status` enum('Active','Inactive') DEFAULT 'Inactive',
+  `disscussion` enum('Allow','disallow') DEFAULT 'Allow',
+  PRIMARY KEY (`comments_id`),
+  KEY `post_id` (`post_id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="feedback" view="standard">
+<left>1178</left>
+<top>-1</top>
+<width>174</width>
+<height>160</height>
+<sql_create_table>CREATE TABLE `feedback` (
+  `fdb_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `guest_id` int(11) DEFAULT NULL,
+  `feedback` longtext NOT NULL,
+  `fbd_date` datetime NOT NULL,
+  PRIMARY KEY (`fdb_id`),
+  KEY `user_id` (`user_id`),
+  KEY `guest_id` (`guest_id`),
+  CONSTRAINT `feedback_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `feedback_ibfk_2` FOREIGN KEY (`guest_id`) REFERENCES `guests` (`guest_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="guests" view="standard">
+<left>905</left>
+<top>505</top>
+<width>250</width>
+<height>142</height>
+<sql_create_table>CREATE TABLE `guests` (
+  `guest_id` int(11) NOT NULL AUTO_INCREMENT,
+  `guest_name` varchar(255) DEFAULT NULL,
+  `phone_no` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  PRIMARY KEY (`guest_id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="posts" view="standard">
+<left>302</left>
+<top>321</top>
+<width>233</width>
+<height>200</height>
+<sql_create_table>CREATE TABLE `posts` (
+  `post_id` int(11) NOT NULL AUTO_INCREMENT,
+  `blog_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `post` longtext NOT NULL,
+  `post_date` datetime NOT NULL,
+  `image` text DEFAULT NULL,
+  `post_status` enum('Active','Inactive') DEFAULT 'Active',
+  PRIMARY KEY (`post_id`),
+  KEY `user_id` (`user_id`),
+  KEY `category_id` (`blog_id`),
+  CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `posts_ibfk_2` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`blog_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="roles" view="standard">
+<left>157</left>
+<top>33</top>
+<width>192</width>
+<height>132</height>
+<sql_create_table>CREATE TABLE `roles` (
+  `role_id` int(11) NOT NULL AUTO_INCREMENT,
+  `role` varchar(255) NOT NULL,
+  PRIMARY KEY (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="theme" view="colnames">
+<left>918</left>
+<top>89</top>
+<width>200</width>
+<height>180</height>
+<sql_create_table>CREATE TABLE `theme` (
+  `theme_id` int(11) NOT NULL AUTO_INCREMENT,
+  `theme_name` varchar(255) NOT NULL,
+  `font_family` varchar(255) NOT NULL,
+  `font_size` varchar(255) NOT NULL,
+  `background_color` varchar(255) NOT NULL,
+  `post_bg_color` varchar(255) NOT NULL,
+  PRIMARY KEY (`theme_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="users" view="standard">
+<left>556</left>
+<top>17</top>
+<width>283</width>
+<height>325</height>
+<sql_create_table>CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_id` int(4) NOT NULL DEFAULT 2,
+  `theme_id` int(11) DEFAULT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` text NOT NULL,
+  `gender` varchar(255) NOT NULL,
+  `date_of_birth` date NOT NULL,
+  `image` text DEFAULT NULL,
+  `acc_status` enum('Active','Inactive') DEFAULT 'Inactive',
+  `permission` enum('Approve','Reject','Pending') DEFAULT 'Pending',
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `email` (`email`),
+  KEY `role_id` (`role_id`),
+  KEY `theme_id` (`theme_id`),
+  CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `users_ibfk_2` FOREIGN KEY (`theme_id`) REFERENCES `theme` (`theme_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="country" view="standard">
+<left>1176</left>
+<top>182</top>
+<width>226</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `country` (
+  `country_id` int(11) NOT NULL AUTO_INCREMENT,
+  `country` varchar(255) NOT NULL,
+  PRIMARY KEY (`country_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="home_town" view="standard">
+<left>1427</left>
+<top>349</top>
+<width>234</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `home_town` (
+  `home_town_id` int(11) NOT NULL AUTO_INCREMENT,
+  `country_id` int(11) DEFAULT NULL,
+  `home_town` varchar(255) NOT NULL,
+  PRIMARY KEY (`home_town_id`),
+  KEY `country_id` (`country_id`),
+  CONSTRAINT `home_town_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `country` (`country_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="blog" view="standard">
+<left>36</left>
+<top>462</top>
+<width>242</width>
+<height>197</height>
+<sql_create_table>CREATE TABLE `blog` (
+  `blog_id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_id` int(11) DEFAULT NULL,
+  `blog_title` varchar(255) NOT NULL,
+  `sub_title` varchar(255) DEFAULT NULL,
+  `posts_per_page` int(11) NOT NULL,
+  `bg_image` text DEFAULT NULL,
+  `logo_img` text DEFAULT NULL,
+  PRIMARY KEY (`blog_id`),
+  KEY `category_id` (`category_id`),
+  CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="followers" view="standard">
+<left>300</left>
+<top>186</top>
+<width>233</width>
+<height>123</height>
+<sql_create_table>CREATE TABLE `followers` (
+  `follow_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `blog_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`follow_id`),
+  KEY `blog_id` (`blog_id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `followers_ibfk_1` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`blog_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `followers_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="error_logs" view="standard">
+<left>1422</left>
+<top>20</top>
+<width>232</width>
+<height>170</height>
+<sql_create_table>CREATE TABLE `error_logs` (
+  `err_id` int(11) NOT NULL AUTO_INCREMENT,
+  `error_level` int(11) DEFAULT NULL,
+  `err_line` int(11) DEFAULT NULL,
+  `err_path` text DEFAULT NULL,
+  `err_msg` text DEFAULT NULL,
+  PRIMARY KEY (`err_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>

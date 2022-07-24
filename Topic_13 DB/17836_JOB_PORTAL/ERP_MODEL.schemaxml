@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="utf8mb4" collation="utf8mb4_general_ci">job_portal</database>
+</source>
+<canvas zoom="90">
+<tables>
+<table name="academic_info" view="standard">
+<left>265</left>
+<top>156</top>
+<width>247</width>
+<height>135</height>
+<sql_create_table>CREATE TABLE `academic_info` (
+  `acd_id` int(11) NOT NULL AUTO_INCREMENT,
+  `qualification` varchar(40) DEFAULT NULL,
+  `university` varchar(30) DEFAULT NULL,
+  `complete_date` date DEFAULT NULL,
+  `candidate_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`acd_id`),
+  KEY `candidate_id` (`candidate_id`),
+  CONSTRAINT `academic_info_ibfk_1` FOREIGN KEY (`candidate_id`) REFERENCES `candidate` (`condidate_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="application_status" view="standard">
+<left>832</left>
+<top>207</top>
+<width>216</width>
+<height>114</height>
+<sql_create_table>CREATE TABLE `application_status` (
+  `app_s_id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` enum('accept','reject') DEFAULT 'reject',
+  `j_app_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`app_s_id`),
+  KEY `j_app_id` (`j_app_id`),
+  CONSTRAINT `application_status_ibfk_1` FOREIGN KEY (`j_app_id`) REFERENCES `job_applications` (`j_app_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="candidate" view="standard">
+<left>10</left>
+<top>25</top>
+<width>231</width>
+<height>114</height>
+<sql_create_table>CREATE TABLE `candidate` (
+  `condidate_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) DEFAULT NULL,
+  `gender` enum('male','female') DEFAULT NULL,
+  PRIMARY KEY (`condidate_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="company" view="standard">
+<left>671</left>
+<top>28</top>
+<width>195</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `company` (
+  `company_id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_name` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`company_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="contact_numbers" view="standard">
+<left>914</left>
+<top>30</top>
+<width>175</width>
+<height>114</height>
+<sql_create_table>CREATE TABLE `contact_numbers` (
+  `c_n_id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` int(20) DEFAULT NULL,
+  `company_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`c_n_id`),
+  KEY `company_id` (`company_id`),
+  CONSTRAINT `contact_numbers_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`company_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="job_applications" view="standard">
+<left>639</left>
+<top>239</top>
+<width>135</width>
+<height>114</height>
+<sql_create_table>CREATE TABLE `job_applications` (
+  `j_app_id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` date DEFAULT NULL,
+  `job_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`j_app_id`),
+  KEY `job_id` (`job_id`),
+  CONSTRAINT `job_applications_ibfk_1` FOREIGN KEY (`job_id`) REFERENCES `jobs` (`job_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="jobs" view="standard">
+<left>439</left>
+<top>26</top>
+<width>177</width>
+<height>114</height>
+<sql_create_table>CREATE TABLE `jobs` (
+  `job_id` int(11) NOT NULL AUTO_INCREMENT,
+  `job_name` varchar(30) DEFAULT NULL,
+  `company_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`job_id`),
+  KEY `company_id` (`company_id`),
+  CONSTRAINT `jobs_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`company_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="pro_skills" view="standard">
+<left>266</left>
+<top>302</top>
+<width>247</width>
+<height>135</height>
+<sql_create_table>CREATE TABLE `pro_skills` (
+  `pro_id` int(11) NOT NULL AUTO_INCREMENT,
+  `skill` varchar(30) DEFAULT NULL,
+  `complete_date` date DEFAULT NULL,
+  `center` varchar(30) DEFAULT NULL,
+  `candidate_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`pro_id`),
+  KEY `candidate_id` (`candidate_id`),
+  CONSTRAINT `pro_skills_ibfk_1` FOREIGN KEY (`candidate_id`) REFERENCES `candidate` (`condidate_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="work_experiece" view="standard">
+<left>265</left>
+<top>446</top>
+<width>247</width>
+<height>117</height>
+<sql_create_table>CREATE TABLE `work_experiece` (
+  `exp_id` int(11) NOT NULL AUTO_INCREMENT,
+  `organization` varchar(40) DEFAULT NULL,
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `candidate_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`exp_id`),
+  KEY `candidate_id` (`candidate_id`),
+  CONSTRAINT `work_experiece_ibfk_1` FOREIGN KEY (`candidate_id`) REFERENCES `candidate` (`condidate_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="candidate_jobs" view="colnames">
+<left>273</left>
+<top>27</top>
+<width>143</width>
+<height>116</height>
+<sql_create_table>CREATE TABLE `candidate_jobs` (
+  `cj_id` int(11) NOT NULL AUTO_INCREMENT,
+  `condidate_id` int(11) DEFAULT NULL,
+  `job_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`cj_id`),
+  KEY `condidate_id` (`condidate_id`),
+  KEY `job_id` (`job_id`),
+  CONSTRAINT `candidate_jobs_ibfk_1` FOREIGN KEY (`condidate_id`) REFERENCES `candidate` (`condidate_id`),
+  CONSTRAINT `candidate_jobs_ibfk_2` FOREIGN KEY (`job_id`) REFERENCES `jobs` (`job_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>

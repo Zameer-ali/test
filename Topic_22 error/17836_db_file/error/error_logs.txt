@@ -1,0 +1,6 @@
+Error:Access denied for user 'rot'@'localhost' (using password: NO),Path:H:\XAMP\htdocs\Topic_22 error\17836_db_files.php,level No:1045,line NO:6
+Error:Undefined variable $abc,Level No:2,Path:H:\XAMP\htdocs\Topic_22 error\17836_db_files.php,line NO:32
+Error:Invalid User,Level No:1024,Path:H:\XAMP\htdocs\Topic_22 error\17836_db_files.php,line NO:37
+Error:Access denied for user 'rot'@'localhost' (using password: NO),Path:H:\XAMP\htdocs\Topic_22 error\17836_db_files.php,level No:1045,line NO:6
+Error:Undefined variable $abc,Level No:2,Path:H:\XAMP\htdocs\Topic_22 error\17836_db_files.php,line NO:33
+Error:Invalid User,Level No:1024,Path:H:\XAMP\htdocs\Topic_22 error\17836_db_files.php,line NO:38

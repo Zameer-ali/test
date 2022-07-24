@@ -1,0 +1,134 @@
+*{
+	box-sizing: border-box;	
+ }
+.row{
+	display: flex;
+	clear: both;
+}
+
+
+[class|="col"]{
+	padding: 5px;
+}
+
+.col-1{
+	width: 8.33%;
+	float: left;
+}
+
+.col-2{
+	width: 16.66%;
+	float: left;
+}
+
+.col-3{
+	width: 25%;
+	float: left;
+}
+
+.col-4{
+	width: 33.33%;
+	float: left;
+}
+
+.col-5{
+	width: 41.66%;
+	float: left;
+}
+
+.col-6{
+	width: 50%;
+	float: left;
+}
+
+.col-7{
+	width: 58.33%;
+	float: left;
+}
+
+.col-8{
+	width: 66.66%;
+	float: left;
+}
+
+.col-9{
+	width: 75%;
+	float: left;
+}
+
+.col-10{
+	width: 83.33%;
+	float: left;
+}
+
+.col-11{
+	width: 91.66%;
+	float: left;
+}
+
+.col-12{
+	width: 100%;
+	float: left;
+}
+.text-center{
+	text-align: center;
+}
+.border{
+	border-width: 2px;
+	border-style: solid;
+}
+
+.border-blue{
+border-color: blue;
+}
+.border-red{
+border-color: red;
+}
+.border-pink{
+border-color: pink;
+}
+.border-gray{
+border-color: gray;
+}
+.border-orange{
+border-color: orange;
+}
+.border-green{
+border-color: green;
+}
+.border-purple{
+border-color: purple;
+}
+.border-yellow{
+border-color: yellow;
+}
+.border-lightgreen{
+border-color: lightgreen;
+}
+.text-blue{
+	color:blue;
+}
+.text-green{
+	color:green;
+}
+.text-red{
+	color:red;
+}
+.text-pink{
+	color:pink;
+}
+.text-gray{
+	color:gray;
+}
+.text-orange{
+	color:orange;
+}
+.text-purple{
+	color:purple;
+}
+.text-yellow{
+	color:yellow;
+}
+.text-lightgreen{
+	color:lightgreen;
+}

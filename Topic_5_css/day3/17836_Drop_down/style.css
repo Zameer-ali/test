@@ -1,0 +1,48 @@
+ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    
+}
+ul li{
+    background-color: aqua;
+    float: left;
+    padding: 20px;
+    position: relative;
+    
+}
+ul li a{
+    white-space: nowrap;  
+    display: block;
+    text-decoration: none;
+    width: 100px;
+    text-align: center;
+}
+ul li:hover{ 
+    background-color: pink;
+    
+}
+li ul{
+    display: none;
+    background-color: aqua;
+    position: absolute;
+    top: 57px;
+    left: 0px;   
+}
+
+li:hover ul{
+    display: block;
+}
+li:hover>ul.sub-menu{
+    display: block;
+    position: absolute;
+    left: 140px;
+    top: 0px;
+}
+
+ul{
+    float:none
+}
+ul::after{
+    clear: both;
+}

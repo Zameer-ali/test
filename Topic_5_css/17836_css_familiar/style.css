@@ -1,0 +1,40 @@
+body{
+    margin: 0px;}
+.header{
+    background-color: #EEEBEC;
+    height: 100px;
+}
+.logo{
+margin:25px 0px 0px 25px;
+}
+.ul {
+    list-style: none;
+    float: right;
+}
+.ul li{
+    line-height: 60px;
+    display: inline-block;
+}
+.ul li a{
+    color: #7A6666;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 0px 15px;
+}
+.ul li a:hover{
+    color: red;
+}
+.container{
+    margin: 0px 150px;
+}
+.product{
+    background-color: #EBE7E8;
+    height: 265px;
+}
+
+
+.footer{
+    background-color: #CB3362;
+    height: 300px;
+}
+

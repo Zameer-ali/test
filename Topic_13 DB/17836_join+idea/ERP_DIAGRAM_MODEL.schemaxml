@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="utf8mb4" collation="utf8mb4_general_ci">hospital</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="doctors" view="standard">
+<left>514</left>
+<top>51</top>
+<width>298</width>
+<height>196</height>
+<sql_create_table>CREATE TABLE `doctors` (
+  `doc_id` int(11) NOT NULL AUTO_INCREMENT,
+  `Doctor_Name` varchar(20) DEFAULT NULL,
+  `shift` varchar(20) DEFAULT NULL,
+  `gender` enum('male','female') DEFAULT NULL,
+  `ms_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`doc_id`),
+  KEY `ms_id` (`ms_id`),
+  CONSTRAINT `doctors_ibfk_2` FOREIGN KEY (`ms_id`) REFERENCES `ms` (`ms_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="ms" view="standard">
+<left>271</left>
+<top>90</top>
+<width>208</width>
+<height>146</height>
+<sql_create_table>CREATE TABLE `ms` (
+  `ms_id` int(11) NOT NULL AUTO_INCREMENT,
+  `ms_name` varchar(20) DEFAULT NULL,
+  `gender` enum('male','female') DEFAULT NULL,
+  PRIMARY KEY (`ms_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="patient" view="standard">
+<left>1054</left>
+<top>76</top>
+<width>230</width>
+<height>163</height>
+<sql_create_table>CREATE TABLE `patient` (
+  `patient_id` int(11) NOT NULL AUTO_INCREMENT,
+  `patient_name` varchar(20) DEFAULT NULL,
+  `gender` enum('male','female') DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  PRIMARY KEY (`patient_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="distirct_hospitals" view="standard">
+<left>24</left>
+<top>100</top>
+<width>210</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `distirct_hospitals` (
+  `hosp_id` int(11) NOT NULL AUTO_INCREMENT,
+  `hosp_name` varchar(20) DEFAULT NULL,
+  `ms_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`hosp_id`),
+  UNIQUE KEY `ms_id` (`ms_id`),
+  CONSTRAINT `distirct_hospitals_ibfk_1` FOREIGN KEY (`ms_id`) REFERENCES `ms` (`ms_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+<table name="doctors_patients" view="standard">
+<left>837</left>
+<top>268</top>
+<width>196</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `doctors_patients` (
+  `doc_pat_id` int(11) NOT NULL AUTO_INCREMENT,
+  `doc_id` int(11) DEFAULT NULL,
+  `patient_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`doc_pat_id`),
+  KEY `patient_id` (`patient_id`),
+  KEY `doc_id` (`doc_id`),
+  CONSTRAINT `doctors_patients_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`),
+  CONSTRAINT `doctors_patients_ibfk_2` FOREIGN KEY (`doc_id`) REFERENCES `doctors` (`doc_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>

@@ -1,0 +1,140 @@
+.row{
+	display: flex;
+	clear: both;
+}
+
+
+[class|="col"]{
+	padding: 5px;
+}
+
+.col-1{
+	width: 8.33%;
+	float: left;
+}
+
+.col-2{
+	width: 16.66%;
+	float: left;
+}
+
+.col-3{
+	width: 25%;
+	float: left;
+}
+
+.col-4{
+	width: 33.33%;
+	float: left;
+}
+
+.col-5{
+	width: 41.66%;
+	float: left;
+}
+
+.col-6{
+	width: 50%;
+	float: left;
+}
+
+.col-7{
+	width: 58.33%;
+	float: left;
+}
+
+.col-8{
+	width: 66.66%;
+	float: left;
+}
+
+.col-9{
+	width: 75%;
+	float: left;
+}
+
+.col-10{
+	width: 83.33%;
+	float: left;
+}
+
+.col-11{
+	width: 91.66%;
+	float: left;
+}
+
+.col-12{
+	width: 100%;
+	float: left;
+}
+.text-center{
+	text-align: center;
+}
+*{
+	box-sizing: border-box;	
+ }
+ ul{
+     list-style: none;
+     padding: 0%;
+     margin: 0%;
+ }
+ ul li{
+     background-color: lightblue;
+     display: inline;
+	 padding: 12px 20px;
+	 margin: 5px;
+	 border-radius: 10px;
+ }
+ ul li a{
+     color: black;
+	 text-decoration: none;
+ }
+ ul li:hover{
+	 background-color: lightgray;	 
+ }
+ ul li:hover a{
+color: white;	 
+ }
+ .bg-light{
+	background-color:lightyellow;
+}
+.bg-white{
+	background-color:white;
+}
+.text-white{
+	color:white;
+	
+}
+.text-black{
+	color:black;
+	
+}
+.bg-dark{
+	background-color:black;
+}
+.border{
+	border-width: 1px;
+	border-style: solid;
+}
+.box{
+	padding: 50px;
+	margin: 15px;
+	box-shadow: 5px 0px 6px gray;
+}
+.box:hover{
+	background-color: aliceblue;
+	cursor: pointer;
+}
+.btn_top{
+	padding: 10px;
+	background-color:lightgreen;
+	border-radius: 10px;
+	cursor: pointer;
+	position: fixed;
+	top: 580px;
+	left: 1260px
+}
+.btn_top a{
+text-decoration: none;
+color: black;
+}

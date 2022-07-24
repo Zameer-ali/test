@@ -1,0 +1,21 @@
+a{
+    text-decoration: none;
+    color: black;
+    font-size: larger;
+    display: block;   
+}
+
+a[href$="ppt"]::before{
+content: url(https://www.freeiconspng.com/thumbs/ppt-icon/ppt-icons-free-icons-in-file-icons-vs-2--icon-search-engine--6.png);
+}
+a[href$="xlsx"]::before{
+content: url(https://iconarchive.com/download/i86107/graphicloads/filetype/pdf.ico);
+
+}
+a[href$="docx"]::before{
+content: url(https://iconarchive.com/download/i98392/dakirby309/simply-styled/Microsoft-Word-2013.ico);
+}
+a[href$="xlsx"]::before{
+content: url(https://www.freeiconspng.com/thumbs/xls-icon/excel-png-office-xlsx-icon-3.png);
+}
+
